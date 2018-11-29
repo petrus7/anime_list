@@ -1,6 +1,8 @@
 import unittest
 from datetime import datetime
 
+from model.anime import Anime
+
 proper_data = {
     'anime_id': 11013,
     'title': "Inu x Boku SS",
@@ -35,10 +37,11 @@ proper_data = {
 empty_value = {}
 
 wrong_jsons = [
-    {'{"from": "2012-01-13", "to": "2012-03-30"}'},
-    {"{'from': '2012-01-13', 'to': '2012-03-30'}"},
-    {'{"from": "2012_01_13", "to": "2012_03_30"}'},
+    {'aired': '{"from": "2012-01-13", "to": "2012-03-30"}'},
+    {'aired': "{'from': '2012-01-13', 'to': '2012-03-30'}"},
+    {'aired': '{"from": "2012_01_13", "to": "2012_03_30"}'},
 ]
+
 
 
 class TestAnimeModel(unittest.TestCase):
@@ -48,9 +51,13 @@ class TestAnimeModel(unittest.TestCase):
             a = Anime(j_data)
             self.assertEqual(a.on_air_period[0], datetime(1970, 1, 1))
             self.assertEqual(a.on_air_period[1], datetime(1970, 1, 1))
-        pass
 
-
-
-if __name__ == '__main__':
-    unittest.main()
+    def test_convert_genre_str_to_array(self):
+        a = Anime({"genre": "Comedy, Supernatural, Romance, Shounen"})
+        self.assertTrue(isinstance(a.genre, list))
+        a = Anime({"genre": "Comedy"})
+        self.assertTrue(isinstance(a.genre, list))
+        a = Anime({"genreasassa": None})
+        self.assertTrue(isinstance(a.genre, list))
+        a = Anime({"genre": None})
+        self.assertTrue(isinstance(a.genre, list))
