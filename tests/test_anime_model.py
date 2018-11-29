@@ -61,3 +61,14 @@ class TestAnimeModel(unittest.TestCase):
         self.assertTrue(isinstance(a.genre, list))
         a = Anime({"genre": None})
         self.assertTrue(isinstance(a.genre, list))
+
+
+class TestAnimeStorageModel(unittest.TestCase):
+
+    def test_object_creation(self):
+        s = AnimeStorage(anime=proper_data)
+        self.assertIsNotNone(s.current_anime)
+        s = AnimeStorage(animes=[proper_data])
+        self.assertIsNotNone(s.current_animes)
+        self.assertRaises(AnimeAmbiqiousException ,AnimeStorage, {'anime':proper_data, 'animes':[proper_data]})
+
