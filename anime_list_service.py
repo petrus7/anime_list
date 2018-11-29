@@ -2,9 +2,6 @@ import logging
 from logging.handlers import RotatingFileHandler
 
 from flask import Flask
-from flask_cors import CORS
-
-from src.database_client import DB
 
 
 class AnimeListServiceFlask(Flask):
@@ -15,9 +12,7 @@ def create_app(config_class):
     app = AnimeListServiceFlask(__name__, static_url_path='')
 
     # Configuration
-    app.config.from_object(f'src.config.{config_class}')
-    DB(config=app.config)
-    print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+    app.config.from_object(f'config.{config_class}')
 
     file_handler = RotatingFileHandler(filename='app.log', maxBytes=1024*1024)
     file_handler.setLevel(app.config['LOG_LEVEL'])
