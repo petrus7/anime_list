@@ -2,6 +2,7 @@ import unittest
 from datetime import datetime
 
 from model.anime import Anime
+from model.anime_storage import AnimeStorage, AnimeAmbiqiousException
 
 proper_data = {
     'anime_id': 11013,
@@ -43,7 +44,6 @@ wrong_jsons = [
 ]
 
 
-
 class TestAnimeModel(unittest.TestCase):
 
     def test_convert_date_str(self):
@@ -70,5 +70,6 @@ class TestAnimeStorageModel(unittest.TestCase):
         self.assertIsNotNone(s.current_anime)
         s = AnimeStorage(animes=[proper_data])
         self.assertIsNotNone(s.current_animes)
-        self.assertRaises(AnimeAmbiqiousException ,AnimeStorage, {'anime':proper_data, 'animes':[proper_data]})
 
+    def test_object_creation_ambigious_data(self):
+        self.assertRaises(AnimeAmbiqiousException, AnimeStorage, proper_data, [proper_data])
