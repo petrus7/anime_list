@@ -30,3 +30,4 @@ class DB(object):
 
     def client(self):
         return DB._instance
+
