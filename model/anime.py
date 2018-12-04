@@ -11,8 +11,6 @@ class Anime:
         self.title = db_anime_entity.get('title_english') if db_anime_entity.get('title_english') else ''
         self.episodes_count = db_anime_entity.get('episodes') if db_anime_entity.get('episodes') else 0
         self.status = db_anime_entity.get('status') if db_anime_entity.get('status') else ''
-        #self.on_air_period = self.__convert_to_time_tuple(
-        #    db_anime_entity.get('aired') if db_anime_entity.get('aired') else '')
         self.score = db_anime_entity.get('score') if db_anime_entity.get('score') else 0.00
         self.votes_count = db_anime_entity.get('scored_by') if db_anime_entity.get('scored_by') else 0
         self.ranking = db_anime_entity.get('rank') if db_anime_entity.get('rank') else 0

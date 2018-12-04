@@ -2,26 +2,13 @@ from flask import Blueprint, jsonify
 from flask_restful import Api, Resource
 from flask import request
 
-from controller.anime_fetcher import DBException, AnimeFetcherFactory
+from api.api_exceptions import InvalidArgument
+from controller.anime_fetcher import DBException
+from controller.controllers_factory import AnimeFetcherFactory
 
 animes_api = Blueprint('animes_api', __name__)
 
 api = Api(animes_api)
-
-class InvalidArgument(Exception):
-
-    def __init__(self, message, status_code=400, payload=None):
-        Exception.__init__(self)
-        self.message = message
-        if status_code is not None:
-            self.status_code = status_code
-        self.payload = payload
-
-    def to_dict(self):
-        rv = dict(self.payload or ())
-        rv['message'] = self.message
-        rv['code'] = self.status_code
-        return rv
 
 
 class GetAnimes(Resource):
@@ -34,7 +21,10 @@ class GetAnimeById(Resource):
 
     def get(self):
         _id = self.__get_valid_id(dict(request.args))
-        a = AnimeFetcherFactory.build_rest_mongo_controller().get_anime_by_id(_id)
+        c = AnimeFetcherFactory.build_rest_mongo_controller()
+        a = c.get_anime_by_id(_id)
+        a = c.get_anime_by_id(_id)
+        a = c.get_anime_by_id(_id)
         return f'ala ma kota! o id {a}'
 
     def __get_valid_id(self, request_dict):
