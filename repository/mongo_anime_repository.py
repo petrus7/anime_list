@@ -13,12 +13,6 @@ class AnimeRepositoryMongoDB(AnimeRepositoryInterface):
         super(AnimeRepositoryMongoDB, self).__init__(db)
         self.animes = self._db.db().animes
 
-    def __enter__(self):
-        return self
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        self._db.client().close()
-
     def get_animes_sorted(self, sort_attribute, reverse=False, page=None, on_page_count=None):
         sort_order = -1 if reverse else 1
         return self.get_animes(page=page, on_page_count=on_page_count).sort(sort_attribute, sort_order)

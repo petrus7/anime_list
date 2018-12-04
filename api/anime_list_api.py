@@ -10,7 +10,6 @@ animes_api = Blueprint('animes_api', __name__)
 
 api = Api(animes_api)
 
-
 class GetAnimes(Resource):
 
     def get(self):
@@ -22,8 +21,6 @@ class GetAnimeById(Resource):
     def get(self):
         _id = self.__get_valid_id(dict(request.args))
         c = AnimeFetcherFactory.build_rest_mongo_controller()
-        a = c.get_anime_by_id(_id)
-        a = c.get_anime_by_id(_id)
         a = c.get_anime_by_id(_id)
         return f'ala ma kota! o id {a}'
 

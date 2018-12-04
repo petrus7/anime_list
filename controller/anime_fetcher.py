@@ -1,3 +1,5 @@
+from pymongo.errors import PyMongoError
+
 from controller.controllers_exceptions import DBException
 from model.anime_storage import AnimeStorage
 from repository.anime_repository_interface import AnimeRepositoryInterface
@@ -13,9 +15,8 @@ class AnimeFetcher:
 
     def get_anime_by_id(self, id):
         try:
-            with self.repo as r:
-                return AnimeStorage(anime=r.get_anime_by_id(int(id))).get_json()
-        except DBException as e:
+            return AnimeStorage(anime=self.repo.get_anime_by_id(int(id))).get_json()
+        except PyMongoError as e:
             print(e)
             raise DBException(message='Something goes wrong')
 

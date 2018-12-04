@@ -1,10 +1,7 @@
-import os
-
 from pymongo import MongoClient
 
 
 class DB(object):
-
     _instance = None
     _db_name = None
 
@@ -30,4 +27,3 @@ class DB(object):
 
     def client(self):
         return DB._instance
-
