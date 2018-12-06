@@ -9,3 +9,5 @@ class DevelopmentConfig(object):
     LOG_LEVEL = logging.DEBUG
     CORS_SUPPORTS_CREDENTIALS = True
     CORS_ORIGINS = r''
+    USER_SERVICE_URL = os.environ.get('USER_SERVICE_URL', '')
+    USERLIST_SERVICE_URL = os.environ.get('USERLIST_SERVICE_URL', '')
