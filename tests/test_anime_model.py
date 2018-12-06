@@ -44,12 +44,6 @@ wrong_jsons = [
 
 class TestAnimeModel(unittest.TestCase):
 
-    def test_convert_date_str(self):
-        for j_data in wrong_jsons:
-            a = Anime(j_data)
-            self.assertEqual(a.on_air_period[0], datetime(1970, 1, 1))
-            self.assertEqual(a.on_air_period[1], datetime(1970, 1, 1))
-
     def test_convert_genre_str_to_array(self):
         a = Anime({"genre": "Comedy, Supernatural, Romance, Shounen"})
         self.assertTrue(isinstance(a.genre, list))
