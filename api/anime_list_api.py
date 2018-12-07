@@ -5,6 +5,7 @@ from flask import request
 from api.api_exceptions import InvalidArgument
 from controller.anime_fetcher import DBException
 from controller.controllers_factory import AnimeFetcherFactory
+from rest.fetch_data_rest import FetchRestData
 
 animes_api = Blueprint('animes_api', __name__)
 

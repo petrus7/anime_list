@@ -17,7 +17,10 @@ class FetchRestData:
     def get(self):
         try:
             r = requests.get(self.url, params=self.query_string, headers=self.headers)
-            return r.json()
+            if r.status_code == 200:
+                return r.json()
+            else:
+                raise FetchDataError('Cannot fetch data {}',r.status_code)
         except HTTPError as e:
             print(f'Http fault {e}')
             raise FetchDataError('Cannot fetch data')
