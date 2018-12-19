@@ -43,6 +43,9 @@ class AnimeRepositoryMongoDB(AnimeRepositoryInterface):
     def get_anime_by_id(self, anime_id):
         return self.animes.find_one({'anime_id': anime_id})
 
+    def get_anime_by_id_list(self, anime_id_list):
+        return self.animes.find({'anime_id': {'$in': anime_id_list}})
+
     def get_animes(self, page=None, on_page_count=None):
 
         return self.__page(self.animes.find(), page, on_page_count)

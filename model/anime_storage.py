@@ -9,6 +9,8 @@ class AnimeStorage:
 
     def __init__(self, anime: dict = None, animes: list = None):
 
+        self.current_anime = None
+        self.current_animes = None
         if anime and animes:
             raise AnimeAmbiqiousException("Both single value and array provided")
         elif not anime and not animes:
@@ -20,5 +22,5 @@ class AnimeStorage:
 
     def get_json(self):
         if self.current_anime:
-            return self.current_anime.get_json_str()
-        return [anime.get_json_str() for anime in self.current_animes]
+            return self.current_anime.to_dict()
+        return [anime.to_dict() for anime in self.current_animes]

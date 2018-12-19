@@ -11,3 +11,4 @@ class DevelopmentConfig(object):
     CORS_ORIGINS = r''
     USER_SERVICE_URL = os.environ.get('USER_SERVICE_URL', '')
     USERLIST_SERVICE_URL = os.environ.get('USERLIST_SERVICE_URL', '')
+    APPS_PORT = 5000

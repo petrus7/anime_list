@@ -38,4 +38,7 @@ class Anime:
     def get_json_str(self):
         return json.dumps(self.__dict__)
 
+    def to_dict(self):
+        return self.__dict__
+
 

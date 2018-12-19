@@ -23,13 +23,13 @@ class FetchRestData:
                 raise FetchDataError('Cannot fetch data {}',r.status_code)
         except HTTPError as e:
             print(f'Http fault {e}')
-            raise FetchDataError('Cannot fetch data')
+            raise FetchDataError(f'Cannot fetch data, {e}')
         except requests.ConnectionError as e:
             print(f'Cannot connect {e}')
-            raise FetchDataError('Cannot fetch data')
+            raise FetchDataError(f'Cannot fetch data, {e}')
         except RequestException as e:
             print(f'Error ! {e}')
-            raise FetchDataError('Cannot fetch data')
+            raise FetchDataError(f'Cannot fetch data, {e}')
 
     def post(self):
         pass

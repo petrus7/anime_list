@@ -33,3 +33,7 @@ class AnimeRepositoryInterface(abc.ABC):
     @abc.abstractmethod
     def get_anime_by_id(self, anime_id):
         pass
+
+    @abc.abstractmethod
+    def get_anime_by_id_list(self, anime_id_list):
+        pass
